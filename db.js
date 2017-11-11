@@ -20,7 +20,7 @@ var NoteSchema = mongoose.model('NoteSchema', {
   id: Number
 });
 
-//EXAMPLE DATA:
+//EXAMPLE DATA:   WORKS
 // var exampleNote = new NoteSchema({ text: 'helloww World' });
 
 // exampleNote.save(function(error, notsurewhatthisis) {

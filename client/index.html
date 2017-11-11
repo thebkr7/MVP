@@ -1,0 +1,28 @@
+<!-- get node cdn -->
+<!-- THIS IS THE TEMPLATE HTML? -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Vaguely Usefull Notes</title>
+    <!-- <link rel="stylesheet" hre -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+    <!-- deleted .min from end of script to get better error reading. Really workd! -->
+
+    <script src="client.js"></script>
+  </head>
+
+  <header>World's Least Reliable Note App</header>
+
+  <body>
+    <div ng-app="notepad" ng-controller="mainController">
+      <ul>
+          <li ng-repeat="x in products">{{x}}</li>
+      </ul>
+      <input ng-model='textToPost.text' placeholder="something">
+      <button type="submit" ng-click='addNote()'>U Sure?</button>
+
+      <button type="submit" ng-click='retrieve()'>View Old Thoughts</button>
+    </div>
+  </body>
+</html>
