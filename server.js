@@ -5,8 +5,11 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+var router = express.Router();
 
-// mongoose.connect('mongodb://node:nodeuser@mongo.onmodulus.net:27017/uwO3mypu');
+
+var mongoose = require('mongoose');
+var NoteSchema = require('./db').NoteSchema;
 //**TODO: create own database**
 
 app.use(express.static(__dirname + '/public'));
@@ -16,11 +19,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(methodOverride());
 
-var Note = mongoose.model('Note', {
-  text: String,
-  time: Date,
-  id: Number
-});
+
+//EXAMPLE DATA
+var exampleNote = new NoteSchema({ text: 'TODO: put NOTE text here to be saved' });
+
+exampleNote.save(function(error, notsurewhatthisis) {
+  if (error) {
+    return console.log('ERROR line 27 DB =', error)
+  }
+  console.log('LINE 30 DB, notsurewhatthisis = ', notsurewhatthisis)
+})
+
+
 
 //GET
 app.get('/note', function(req, res) {   //note
@@ -47,6 +57,6 @@ app.get('*', function(req, res) {
   res.sendfile('./index.html');  //right directory. still not rendering list...
 });
 
-
-app.listen(8080);
-console.log("App listening on port 8080");
+var port = 8080;
+app.listen(port);
+console.log("App listening on port " + port);

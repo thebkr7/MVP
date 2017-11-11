@@ -51,8 +51,12 @@ notepad.controller('mainController', ['$scope', '$http', function($scope, $http)
       console.log('error POST line 49 client', error)
     }
     if (response) {
-      console.log('SUCCESS POST line 52 client', response);
-      //$scope.todos = succes .data?
+      console.log('SUCCESS POST line 52 client', $scope.textToPost); //****THIS DATA IS FROM INPUT FIELD :D******
+
+
+
+
+
     }
   });
   }
