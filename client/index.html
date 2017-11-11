@@ -16,13 +16,13 @@
 
   <body>
     <div ng-app="notepad" ng-controller="mainController">
-      <ul>
-          <li ng-repeat="x in products">{{x}}</li>
-      </ul>
       <input ng-model='textToPost.text' placeholder="something">
       <button type="submit" ng-click='addNote()'>U Sure?</button>
 
       <button type="submit" ng-click='retrieve()'>View Old Thoughts</button>
+      <ul>
+          <li ng-repeat="x in products">{{x.text}}</li>
+      </ul>
     </div>
   </body>
 </html>

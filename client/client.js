@@ -27,32 +27,27 @@ notepad.controller('mainController', ['$scope', '$http', function($scope, $http)
     }
   })};
 
+
 //REFRESH BUTTON GET. untested
-  // $scope.retrieve = function() {
-  //   $http.get('/note').then(function(response, error){
-  //     if (error) {
-  //       console.log('error GET line 17 client', error)
-  //     }
-  //     if (response) {
-  //       console.log('SUCCESS GET line 20 client', response);
-  //       //$scope.todos = succes .data?
-  //     }
-  //   }, function(response, error){
-  //     if (error) {
-  //       console.log('error GET line 25 client', error)
-  //     }
-  //     if (response) {
-  //       console.log('SUCCESS GET line 28 client', response);
-  //       //$scope.todos = succes .data?
-  //     }
-  //   });
-  // }
+  $scope.products = [];
+  $scope.retrieve = function() {
+    $http.get('/note').then(function(response, error){ //error func
+      if (error) {
+        console.log('error GET line 34 client', error)
+      } else if(response) {
+        $scope.products = response.data;
+        console.log('SUCCESS GET line 37 client', response);//response is data sent back from server(aka all db entries)
+      }
+    }, function(response, error){ //success func
+      if (error) {
+        console.log('error GET line 41 client', error)
+      } else if (response) {
+        console.log('SUCCESS GET line 43 client', response);
+      }
+    });
+  }
 
 }]);
-
-
-
-
 
 // notepad.controller('myCtrl', function($scope) {
 //   $scope.products = ['walk the unicorn', 'feed the blue whale'];

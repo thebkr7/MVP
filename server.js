@@ -5,7 +5,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-var router = express.Router();
+// var router = express.Router();
 
 
 var mongoose = require('mongoose');
@@ -19,28 +19,18 @@ app.use(bodyParser.json());
 // app.use(methodOverride());
 
 
-//EXAMPLE DATA.     WORKS
-  // var exampleNote = new NoteSchema({ text: 'TODO: put NOTE text here to be saved' });
-
-  // exampleNote.save(function(error, notsurewhatthisis) {
-  //   if (error) {
-  //     return console.log('ERROR line 27 DB =', error)
-  //   }
-  //   console.log('LINE 30 DB, notsurewhatthisis = ', notsurewhatthisis)
-  // })
-
-
 //GET
-  // app.get('/note', function(req, res) {   //note
-  //   Note.find(function(error, data) {
-  //     if (error) {
-  //       console.log('ERROR line 29 GET = ', error);
-  //     } else {
-  //       console.log('it WoRkEd?! :0')
-  //       res.send(json(data)); //should it be .send?
-  //     }
-  //   });
-  // });
+app.get('/note', function(req, res) {   //note
+  NoteSchema.find(function(error, data) {
+    if (error) {
+      console.log('ERROR line 26 GET = ', error);
+    } else {
+      console.log('Success: GET from DB data') //, data[0].text
+      // res.send(data); //should it be .send?
+      res.send(data);
+    }
+  });
+});
 
 
 
@@ -51,7 +41,7 @@ app.post('/note', function(req, res) {
   //check if it has been sent
   addNoteDB(req.body.text);
   // console.log('hitting line 52 POST server', req.body.text)
-  res.send(200)
+  res.status(200).end();
 })
 
 var addNoteDB = function(noteText) {
@@ -61,7 +51,7 @@ var addNoteDB = function(noteText) {
     if (error) {
       return console.log('ERROR line 50 server =', error)
     }
-    console.log('new note has been added to DB = ', noteText)
+    // console.log('new note has been added to DB = ', noteText)
   });
 }
 
