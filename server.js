@@ -42,6 +42,9 @@ app.post('/api/note', function(req, res) {
 })
 
 
+app.get('*', function(req, res) {
+  res.sendfile('./index.html');
+});
 
 
 app.listen(8080);
