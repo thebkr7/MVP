@@ -31,16 +31,17 @@ app.use(bodyParser.json());
 
 
 //GET
-app.get('/note', function(req, res) {   //note
-  Note.find(function(error, data) {
-    if (error) {
-      console.log('ERROR line 29 GET = ', error);
-    } else {
-      console.log('it WoRkEd?! :0')
-      res.send(json(data)); //should it be .send?
-    }
-  });
-});
+  // app.get('/note', function(req, res) {   //note
+  //   Note.find(function(error, data) {
+  //     if (error) {
+  //       console.log('ERROR line 29 GET = ', error);
+  //     } else {
+  //       console.log('it WoRkEd?! :0')
+  //       res.send(json(data)); //should it be .send?
+  //     }
+  //   });
+  // });
+
 
 
 //POST
@@ -48,9 +49,21 @@ app.post('/note', function(req, res) {
   //get text from input field of client side: answer: body.text
   //send data to mongo as Note schema
   //check if it has been sent
-  console.log('hitting line 52 POST server', req.body.text)
+  addNoteDB(req.body.text);
+  // console.log('hitting line 52 POST server', req.body.text)
+  res.send(200)
 })
 
+var addNoteDB = function(noteText) {
+  var newNote = new NoteSchema({ text: noteText });
+
+  newNote.save(function(error, noteText) {
+    if (error) {
+      return console.log('ERROR line 50 server =', error)
+    }
+    console.log('new note has been added to DB = ', noteText)
+  });
+}
 
 
 var port = 8080;
