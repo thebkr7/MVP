@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 
-mongoose.connect('mongodb://node:nodeuser@mongo.onmodulus.net:27017/uwO3mypu');
+// mongoose.connect('mongodb://node:nodeuser@mongo.onmodulus.net:27017/uwO3mypu');
 //**TODO: create own database**
 
 app.use(express.static(__dirname + '/public'));
@@ -23,11 +23,12 @@ var Note = mongoose.model('Note', {
 });
 
 //GET
-app.get('/api/note', function(req, res) {   //note
+app.get('/note', function(req, res) {   //note
   Note.find(function(error, data) {
     if (error) {
       console.log('ERROR line 29 GET = ', error);
     } else {
+      console.log('it WoRkEd?! :0')
       res.send(json(data)); //should it be .send?
     }
   });
@@ -43,7 +44,7 @@ app.post('/api/note', function(req, res) {
 
 
 app.get('*', function(req, res) {
-  res.sendfile('./index.html');
+  res.sendfile('./index.html');  //right directory. still not rendering list...
 });
 
 
